@@ -1,1 +1,27 @@
-#TODO
+# Maven / Java build output
+target/
+**/target/
+
+# Compiled classes / packaged artifacts
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven logs
+log/
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# IDE (optional but common)
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
