@@ -3,5 +3,5 @@ Repositorio para las prácticas de laboratorio de la asignatura Ingeniería del 
 
 # Nombre de los alumnos que componen este repositorio:
 
-# Juan Calle Agúndez
-# Juan Francisco Gonzalez Álvarez
+Juan Calle Agúndez
+Juan Francisco Gonzalez Álvarez
