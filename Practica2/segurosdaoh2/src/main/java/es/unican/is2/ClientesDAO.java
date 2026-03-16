@@ -32,13 +32,13 @@ public class ClientesDAO implements IClientesDAO {
 		Cliente result = null; 
 		Connection con = H2ServerConnectionManager.getConnection();
 		try {
-			Statement statement = con.createStatement();
 			String statementText = "select * from Clientes where dni = '"+ dni+"'";
-			ResultSet results = statement.executeQuery(statementText);
-			if (results.next()) { 
-				result = procesaCliente(con,results);
+			try (Statement statement = con.createStatement();
+				 ResultSet results = statement.executeQuery(statementText)) {
+				if (results.next()) { 
+					result = procesaCliente(con,results);
+				}
 			}
-			statement.close(); 
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
