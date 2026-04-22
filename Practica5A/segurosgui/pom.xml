@@ -19,5 +19,29 @@
             <artifactId>seguroscommon</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>es.unican.is2</groupId>
+            <artifactId>segurosbusiness</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>es.unican.is2</groupId>
+            <artifactId>segurosdaoh2</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-swing-junit</artifactId>
+            <version>${assertj.swing.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
