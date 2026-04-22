@@ -25,3 +25,6 @@ logs/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Working notes not meant for delivery
+Practica5A/seguimiento-practica5A.md

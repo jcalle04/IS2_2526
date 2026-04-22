@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>es.unican.is2</groupId>
+    <artifactId>practica5a</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Seguros</name>
+
+    <properties>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <junit.version>4.13.2</junit.version>
+        <assertj.swing.version>3.17.1</assertj.swing.version>
+        <maven.surefire.version>3.2.5</maven.surefire.version>
+        <maven.failsafe.version>3.2.5</maven.failsafe.version>
+        <jacocoArgLine></jacocoArgLine>
+
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.token>sqa_9368abf2130720ffa64dac9ed0513534936b8258</sonar.token> 
+        
+        <!-- <sonar.projectKey>Seguros3</sonar.projectKey> -->
+        <!-- <sonar.projectName>Seguros3</sonar.projectName> -->
+    </properties>
+
+    <modules>
+        <module>seguroscommon</module>
+        <module>segurosdaoh2</module>
+        <module>segurosbusiness</module>
+        <module>segurosgui</module>
+        <module>segurosmain</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <argLine>@{jacocoArgLine} --add-opens java.base/java.util=ALL-UNNAMED</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
+                <configuration>
+                    <argLine>@{jacocoArgLine} --add-opens java.base/java.util=ALL-UNNAMED</argLine>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
