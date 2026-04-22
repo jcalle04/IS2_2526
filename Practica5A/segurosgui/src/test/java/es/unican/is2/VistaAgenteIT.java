@@ -41,7 +41,7 @@ public class VistaAgenteIT extends AssertJSwingJUnitTestCase {
 
         window.textBox("txtNombreCliente").requireText("Juan");
         window.textBox("txtTotalCliente").requireText("1820.0");
-        assertThat(window.list().contents()).containsExactly("1111AAA TERCEROS", "1111BBB TODO_RIESGO", "1111CCC TERCEROS");
+        assertThat(window.list("listSeguros").contents()).containsExactly("1111AAA TERCEROS", "1111BBB TODO_RIESGO", "1111CCC TERCEROS");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class VistaAgenteIT extends AssertJSwingJUnitTestCase {
 
         window.textBox("txtNombreCliente").requireText("Luis");
         window.textBox("txtTotalCliente").requireText("0.0");
-        assertThat(window.list().contents()).isEmpty();
+        assertThat(window.list("listSeguros").contents()).isEmpty();
     }
 
     private void consultaCliente(String dni) {
