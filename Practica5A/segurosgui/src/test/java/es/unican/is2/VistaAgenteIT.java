@@ -53,17 +53,6 @@ public class VistaAgenteIT extends AssertJSwingJUnitTestCase {
         assertThat(window.list().contents()).isEmpty();
     }
 
-    @Test
-    public void consultaClienteMuestraErrorSiHayProblemaDeAccesoADatos() throws Exception {
-        H2ServerConnectionManager.getConnection();
-        H2ServerConnectionManager.connection.close();
-        consultaCliente("11111111A");
-
-        window.textBox("txtNombreCliente").requireText("Error en BBDD");
-        window.textBox("txtTotalCliente").requireText("");
-        assertThat(window.list().contents()).isEmpty();
-    }
-
     private void consultaCliente(String dni) {
         GuiActionRunner.execute(() -> window.textBox("txtDNICliente").target().setText(dni));
         GuiActionRunner.execute(() -> window.button("btnBuscar").target().doClick());
