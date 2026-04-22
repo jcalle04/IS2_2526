@@ -16,6 +16,7 @@
         <assertj.swing.version>3.17.1</assertj.swing.version>
         <maven.surefire.version>3.2.5</maven.surefire.version>
         <maven.failsafe.version>3.2.5</maven.failsafe.version>
+        <jacocoArgLine></jacocoArgLine>
 
         <sonar.host.url>http://localhost:9000</sonar.host.url>
         <sonar.token>sqa_9368abf2130720ffa64dac9ed0513534936b8258</sonar.token> 
@@ -39,7 +40,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
                 <configuration>
-                    <argLine>--add-opens java.base/java.util=ALL-UNNAMED</argLine>
+                    <argLine>@{jacocoArgLine} --add-opens java.base/java.util=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -47,7 +48,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven.failsafe.version}</version>
                 <configuration>
-                    <argLine>--add-opens java.base/java.util=ALL-UNNAMED</argLine>
+                    <argLine>@{jacocoArgLine} --add-opens java.base/java.util=ALL-UNNAMED</argLine>
                 </configuration>
                 <executions>
                     <execution>
