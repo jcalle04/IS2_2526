@@ -1,0 +1,113 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+
+\title{Practica 5B: Pruebas de software sobre \texttt{ConjuntoOrdenado}}
+\author{Juan Calle \and Juan Francisco Gonzalez}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Objetivo}
+La practica consiste en disenar y ejecutar pruebas unitarias sobre la clase \texttt{ConjuntoOrdenado}, aplicando tecnicas de caja negra y caja blanca, detectando los defectos existentes y corrigiendolos posteriormente.
+
+\section{Entorno y material entregado}
+Se ha creado un proyecto Maven llamado \texttt{practica5b} con \texttt{groupId = es.unican.is2}. El proyecto depende de la libreria \texttt{AbstractDataTypes} version \texttt{1.0}, donde se encuentra la interfaz \texttt{IConjuntoOrdenado}. La entrega incluye:
+\begin{itemize}
+\item La implementacion de \texttt{ConjuntoOrdenado}.
+\item La clase de pruebas \texttt{ConjuntoOrdenadoTest}.
+\item El fichero \texttt{pom.xml} configurado para ejecutar pruebas con JUnit y medir cobertura con JaCoCo.
+\item Este informe en \LaTeX.
+\end{itemize}
+
+\section{Diseno de pruebas de caja negra}
+El diseno se ha realizado a partir de la especificacion de la interfaz \texttt{IConjuntoOrdenado}, usando particion equivalente y analisis de valores limite.
+
+\subsection{Particiones equivalentes}
+\begin{longtable}{p{2.8cm}p{5.2cm}p{6cm}}
+\toprule
+Metodo & Particiones & Casos implementados \\
+\midrule
+\endhead
+\texttt{add} &
+Elemento valido en conjunto vacio; elemento valido en conjunto no vacio; elemento duplicado; elemento nulo &
+Insercion en vacio, insercion manteniendo orden, rechazo de duplicados, excepcion por nulo \\
+\texttt{get} &
+Indice valido; indice negativo; indice igual al tamano &
+Acceso a posiciones validas, excepcion para $-1$, excepcion para \texttt{size()} \\
+\texttt{remove} &
+Indice valido; indice negativo; indice igual al tamano &
+Eliminacion correcta de una posicion intermedia, excepcion para $-1$, excepcion para \texttt{size()} \\
+\texttt{size} &
+Conjunto vacio; conjunto no vacio &
+Comprobacion de cardinalidad antes y despues de inserciones \\
+\texttt{clear} &
+Conjunto no vacio; conjunto vacio tras limpiar &
+Vaciado del conjunto y comprobacion de inaccesibilidad posterior \\
+\bottomrule
+\end{longtable}
+
+\subsection{Analisis de valores limite}
+Los limites relevantes aparecen en los indices y en el cardinal del conjunto:
+\begin{itemize}
+\item Para \texttt{get} y \texttt{remove}: se prueban los limites invalidos \texttt{-1} y \texttt{size()}, y valores validos como \texttt{0} y una posicion intermedia.
+\item Para \texttt{size}: se comprueban los valores limite \texttt{0}, \texttt{1}, \texttt{2} y \texttt{3} mediante distintas secuencias de insercion y borrado.
+\item Para \texttt{add}: se prueban inserciones al principio, en medio y en un conjunto vacio, ademas del caso limite de duplicado.
+\end{itemize}
+
+\section{Pruebas de caja blanca}
+Se han anadido pruebas orientadas a cubrir todos los caminos relevantes del metodo \texttt{add}, que era el unico metodo con logica de decision significativa:
+\begin{itemize}
+\item Camino con conjunto vacio.
+\item Camino con conjunto no vacio y sin iteraciones del bucle.
+\item Camino con conjunto no vacio y con iteraciones del bucle.
+\item Camino de rechazo de duplicados.
+\item Camino de excepcion por parametro nulo.
+\end{itemize}
+Ademas, se han cubierto tanto las ejecuciones normales como las excepcionales de \texttt{get} y \texttt{remove}.
+
+\section{Ejecucion inicial y defectos detectados}
+Las pruebas se ejecutaron primero sobre la version original defectuosa. La ejecucion inicial mostro fallos en cuatro pruebas:
+\begin{itemize}
+\item \texttt{testAddMantieneOrdenNatural}
+\item \texttt{testAddNoInsertaDuplicados}
+\item \texttt{testGetIndicesValidos}
+\item \texttt{testRemoveIndiceValido}
+\end{itemize}
+
+El analisis de esos fallos permitio localizar dos defectos en el metodo \texttt{add}:
+\begin{itemize}
+\item La condicion del bucle estaba invertida y provocaba inserciones que rompian el orden natural.
+\item No se comprobaba si el elemento ya existia, por lo que se admitian duplicados y siempre se devolvia \texttt{true}.
+\end{itemize}
+
+\section{Correccion realizada}
+Se corrigio el metodo \texttt{add} para:
+\begin{itemize}
+\item Avanzar mientras el nuevo elemento sea mayor que el actual, conservando el orden ascendente.
+\item Detectar si el elemento ya existe en la posicion de insercion y devolver \texttt{false} sin modificar el conjunto.
+\end{itemize}
+
+\section{Resultados finales}
+Tras la correccion, la ejecucion de \texttt{mvn test} finaliza correctamente:
+\begin{itemize}
+\item 13 pruebas ejecutadas.
+\item 0 fallos.
+\item 0 errores.
+\end{itemize}
+
+La cobertura obtenida con JaCoCo es completa sobre la clase \texttt{ConjuntoOrdenado}:
+\begin{itemize}
+\item Instrucciones: 100\%.
+\item Ramas: 100\%.
+\item Lineas: 100\%.
+\item Metodos: 100\%.
+\end{itemize}
+
+\section{Conclusion}
+La bateria de pruebas diseniada permite detectar los defectos presentes en la implementacion original y verificar posteriormente la correccion de la clase. El proyecto entregado queda preparado para su ejecucion mediante Maven y cumple los requisitos funcionales especificados para la estructura de datos \texttt{ConjuntoOrdenado}.
+
+\end{document}
