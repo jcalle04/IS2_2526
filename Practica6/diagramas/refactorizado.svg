@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <style>
+    .box { fill: #f7f7f7; stroke: #333; stroke-width: 2; }
+    .abstract { fill: #eef6ff; }
+    .title { font: 700 20px 'Segoe UI', sans-serif; }
+    .body { font: 15px 'Consolas', monospace; }
+    .rel { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .inherit { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#triangle); }
+    .label { font: 14px 'Segoe UI', sans-serif; fill: #222; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#333" />
+    </marker>
+    <marker id="triangle" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <path d="M0,7 L12,0 L12,14 z" fill="#fff" stroke="#333" stroke-width="1.5" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="70" y="80" width="280" height="150" rx="8"/>
+  <text class="title" x="120" y="115">TransportesApplication</text>
+  <text class="body" x="95" y="150">+ main(String[] args)</text>
+  <text class="body" x="95" y="180">+ crearEmpresaDemo()</text>
+  <text class="body" x="95" y="210">+ mostrarResumen(...)</text>
+
+  <rect class="box" x="430" y="60" width="360" height="220" rx="8"/>
+  <text class="title" x="530" y="95">GestionTransportes</text>
+  <text class="body" x="455" y="130">- Map&lt;String, Conductor&gt; conductoresPorDni</text>
+  <text class="body" x="455" y="165">+ buscarConductorPorDni(String)</text>
+  <text class="body" x="455" y="200">+ registrarConductor(...)</text>
+  <text class="body" x="455" y="235">+ registrarTransporte(String, Transporte)</text>
+  <text class="body" x="455" y="270">+ obtenerConductores()</text>
+
+  <rect class="box" x="900" y="60" width="360" height="260" rx="8"/>
+  <text class="title" x="1030" y="95">Conductor</text>
+  <text class="body" x="925" y="130">- List&lt;Transporte&gt; transportes</text>
+  <text class="body" x="925" y="160">- String dni, nombre, apellido1</text>
+  <text class="body" x="925" y="190">- String apellido2, direccion</text>
+  <text class="body" x="925" y="225">+ getDni(), getNombre()</text>
+  <text class="body" x="925" y="255">+ getApellido1(), getApellido2()</text>
+  <text class="body" x="925" y="285">+ getDireccion(), calcularSueldo()</text>
+
+  <rect class="box abstract" x="910" y="400" width="340" height="180" rx="8"/>
+  <text class="title" x="1045" y="435">Transporte</text>
+  <text class="body" x="940" y="470">&lt;&lt;abstract&gt;&gt;</text>
+  <text class="body" x="935" y="505">- double horas</text>
+  <text class="body" x="935" y="535">+ getHoras(), calcularPago()</text>
+  <text class="body" x="935" y="565"># calcularPagoBase(), calcularExtra()</text>
+
+  <rect class="box" x="590" y="680" width="290" height="150" rx="8"/>
+  <text class="title" x="650" y="715">TransportePersonas</text>
+  <text class="body" x="615" y="750">- int personas</text>
+  <text class="body" x="615" y="780">+ getPersonas()</text>
+  <text class="body" x="615" y="810"># calcularExtra()</text>
+
+  <rect class="box" x="945" y="680" width="290" height="150" rx="8"/>
+  <text class="title" x="1000" y="715">TransporteMercancias</text>
+  <text class="body" x="970" y="750">- int toneladas</text>
+  <text class="body" x="970" y="780">+ getToneladas()</text>
+  <text class="body" x="970" y="810"># calcularExtra()</text>
+
+  <rect class="box" x="1120" y="460" width="230" height="120" rx="8"/>
+  <text class="title" x="1140" y="495">TransporteMercancias</text>
+  <text class="title" x="1150" y="520">Peligrosas</text>
+  <text class="body" x="1150" y="555"># calcularExtra()</text>
+
+  <path class="rel" d="M350 150 L430 150"/>
+  <text class="label" x="365" y="135">usa</text>
+
+  <path class="rel" d="M790 170 L900 170"/>
+  <text class="label" x="800" y="155">conductores (0..*)</text>
+
+  <path class="rel" d="M1080 320 L1080 400"/>
+  <text class="label" x="1095" y="365">transportes (0..*)</text>
+
+  <path class="inherit" d="M735 680 L980 580"/>
+  <path class="inherit" d="M1090 680 L1090 580"/>
+  <path class="inherit" d="M1235 460 L1180 430"/>
+</svg>
