@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <style>
+    .box { fill: #f7f7f7; stroke: #333; stroke-width: 2; }
+    .title { font: 700 20px 'Segoe UI', sans-serif; }
+    .body { font: 15px 'Consolas', monospace; }
+    .rel { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .label { font: 14px 'Segoe UI', sans-serif; fill: #222; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#333" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="70" y="250" width="260" height="120" rx="8"/>
+  <text class="title" x="100" y="285">GestionTransportesGUI</text>
+  <text class="body" x="95" y="320">+ main(String[] args)</text>
+  <text class="body" x="95" y="350">- mensaje(String, String)</text>
+
+  <rect class="box" x="420" y="210" width="320" height="190" rx="8"/>
+  <text class="title" x="495" y="245">gestionTransportes</text>
+  <text class="body" x="445" y="280">- ArrayList&lt;Conductor&gt; cs</text>
+  <text class="body" x="445" y="315">+ buscaConductor(String)</text>
+  <text class="body" x="445" y="350">+ anhadeConductor(...)</text>
+  <text class="body" x="445" y="385">+ conductores()</text>
+
+  <rect class="box" x="810" y="80" width="320" height="280" rx="8"/>
+  <text class="title" x="920" y="115">Conductor</text>
+  <text class="body" x="835" y="150">- ArrayList&lt;Transporte&gt; transportes</text>
+  <text class="body" x="835" y="180">- String dni, nombre, apellido1</text>
+  <text class="body" x="835" y="210">- String apellido2, dire</text>
+  <text class="body" x="835" y="245">+ dni(), getDni(), getNombre()</text>
+  <text class="body" x="835" y="275">+ getApellido1(), apellido2()</text>
+  <text class="body" x="835" y="305">+ getDire(), sueldo()</text>
+  <text class="body" x="835" y="335">+ anhadeTransporte(Transporte)</text>
+
+  <rect class="box" x="810" y="440" width="320" height="220" rx="8"/>
+  <text class="title" x="925" y="475">Transporte</text>
+  <text class="body" x="835" y="510">- double horas</text>
+  <text class="body" x="835" y="540">- int ton, personas</text>
+  <text class="body" x="835" y="570">- CategoriaTransporte cat</text>
+  <text class="body" x="835" y="605">+ horas(), categoria()</text>
+  <text class="body" x="835" y="635">+ ton(), getPersonas()</text>
+
+  <rect class="box" x="430" y="500" width="300" height="120" rx="8"/>
+  <text class="title" x="485" y="535">CategoriaTransporte</text>
+  <text class="body" x="470" y="570">&lt;&lt;enumeration&gt;&gt;</text>
+  <text class="body" x="455" y="600">Mercancias | MercanciasPeligrosas | Personas</text>
+
+  <path class="rel" d="M330 310 L420 310"/>
+  <text class="label" x="352" y="294">gt (1)</text>
+
+  <path class="rel" d="M740 270 L810 220"/>
+  <text class="label" x="735" y="235">cs (0..*)</text>
+
+  <path class="rel" d="M970 360 L970 440"/>
+  <text class="label" x="985" y="406">transportes (0..*)</text>
+
+  <path class="rel" d="M730 560 L810 550"/>
+  <text class="label" x="705" y="540">cat (1)</text>
+</svg>
